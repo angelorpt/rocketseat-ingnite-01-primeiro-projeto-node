@@ -32,3 +32,8 @@ Content-Type: application/json
   "name": "Mario Souto"
 }
 
+###
+
+DELETE {{baseUrl}}/accounts
+CPF: 123456789
+

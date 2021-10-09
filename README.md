@@ -13,9 +13,9 @@ Primeiro projeto baseado na trilha de Node.js da Rocketseat.
 - [x] Deve ser possível realizar um depósito
 - [x] Deve ser possível realizar um saque
 - [x] Deve ser possível buscar o extrato bancário do cliente por data
-- [ ] Deve ser possível atualizar dados da conta do cliente
-- [ ] Deve ser possível obter dados da conta do cliente
-- [ ] Deve ser possível deletar uma conta
+- [x] Deve ser possível atualizar dados da conta do cliente
+- [x] Deve ser possível obter dados da conta do cliente
+- [x] Deve ser possível deletar uma conta
 
 ## Regras de Negócio
 
@@ -24,7 +24,7 @@ Primeiro projeto baseado na trilha de Node.js da Rocketseat.
 - [x] Não deve ser possível fazer depósito em uma conta não existente
 - [x] Não deve ser possível fazer saque em euma conta não existente
 - [x] Não deve ser possível fazer saque quando o saldo for insuficiente
-- [ ] Não deve ser possível exluir uma conta não existente
+- [x] Não deve ser possível exluir uma conta não existente
 
 ## Instalação
 

@@ -82,6 +82,15 @@ app.put("/accounts", verifyIfExistsAccountCPF, (req, res) => {
   return res.status(200).send(customer);
 });
 
+app.delete("/accounts", verifyIfExistsAccountCPF, (req, res) => {
+  const { customer } = req;
+
+  // splice
+  customers.splice(customer, 1);
+
+  return res.status(200).json({ message: "Customer deletado com sucesso" });
+});
+
 app.get("/statements", verifyIfExistsAccountCPF, (req, res) => {
   const { customer } = req;
   return res.json(customer.statement);
