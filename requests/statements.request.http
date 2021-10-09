@@ -30,3 +30,7 @@ CPF: 123456789
 {
   "amount": 100
 }
+### 
+
+GET {{baseUrl}}/balance
+CPF: 123456789

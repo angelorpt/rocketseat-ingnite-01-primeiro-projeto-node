@@ -153,5 +153,11 @@ app.post("/withdraw", verifyIfExistsAccountCPF, (req, res) => {
   }
 });
 
+app.get("/balance", verifyIfExistsAccountCPF, (req, res) => {
+  const { customer } = req;
+  const balance = getBalance(customer.statement);
+  return res.status(200).json({ balance: balance });
+});
+
 // Sobe o Servidor na Porta 3000
 app.listen(3000, () => console.log("API Running..."));
