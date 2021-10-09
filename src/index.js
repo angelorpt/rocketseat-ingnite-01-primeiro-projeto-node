@@ -48,8 +48,8 @@ app.post("/accounts", (req, res) => {
   return res.status(201).send(customer);
 });
 
-app.get("/statements/:cpf", (req, res) => {
-  const { cpf } = req.params;
+app.get("/statements", (req, res) => {
+  const { cpf } = req.headers;
 
   const customer = customers.find((customer) => customer.cpf === cpf);
   if (!customer) {

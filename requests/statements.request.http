@@ -2,5 +2,5 @@
 
 ### 
 
-GET {{baseUrl}}/statements/123456789
-
+GET {{baseUrl}}/statements
+CPF: 123456789
