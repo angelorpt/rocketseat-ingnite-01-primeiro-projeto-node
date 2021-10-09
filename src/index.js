@@ -39,8 +39,13 @@ app.get("/", (_, res) => {
   return res.json({ hello: "world" });
 });
 
-app.get("/accounts", (req, res) => {
+app.get("/accounts/all", (req, res) => {
   return res.status(200).json(customers);
+});
+
+app.get("/accounts", verifyIfExistsAccountCPF, (req, res) => {
+  const { customer } = req;
+  return res.status(200).json(customer);
 });
 
 app.post("/accounts", (req, res) => {
@@ -66,6 +71,15 @@ app.post("/accounts", (req, res) => {
   customers.push(customer);
 
   return res.status(201).send(customer);
+});
+
+app.put("/accounts", verifyIfExistsAccountCPF, (req, res) => {
+  const { name } = req.body;
+  const { customer } = req;
+
+  customer.name = name;
+
+  return res.status(200).send(customer);
 });
 
 app.get("/statements", verifyIfExistsAccountCPF, (req, res) => {

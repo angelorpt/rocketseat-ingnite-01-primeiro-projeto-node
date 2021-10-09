@@ -1,0 +1,32 @@
+@baseUrl = http://localhost:3000
+
+### 
+
+GET {{baseUrl}}/statements
+CPF: 123456789
+
+### 
+
+GET {{baseUrl}}/statements/date?date=2021-10-09
+CPF: 123456789
+
+### 
+
+POST {{baseUrl}}/deposit
+Content-Type: application/json
+CPF: 123456789
+
+{
+  "description": "Depósito do Ignite",
+  "amount": 1500.00
+}
+
+### 
+
+POST {{baseUrl}}/withdraw
+Content-Type: application/json
+CPF: 123456789
+
+{
+  "amount": 100
+}
