@@ -1,0 +1,6 @@
+@baseUrl = http://localhost:3000
+
+### 
+
+GET {{baseUrl}}/statements/123456789
+

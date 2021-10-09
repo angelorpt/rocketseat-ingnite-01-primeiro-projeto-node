@@ -10,11 +10,11 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (_, res) => {
-  res.json({ hello: "world" });
+  return res.json({ hello: "world" });
 });
 
 app.get("/accounts", (req, res) => {
-  res.status(200).json(customers);
+  return res.status(200).json(customers);
 });
 
 /**
@@ -31,8 +31,9 @@ app.post("/accounts", (req, res) => {
   );
 
   if (customerAlreadyExists) {
-    res.status(422).send({ message: "Já existe uma conta para este CPF" });
-    return;
+    return res
+      .status(422)
+      .send({ message: "Já existe uma conta para este CPF" });
   }
 
   const id = uuidv4();
@@ -45,6 +46,17 @@ app.post("/accounts", (req, res) => {
   customers.push(customer);
 
   return res.status(201).send(customer);
+});
+
+app.get("/statements/:cpf", (req, res) => {
+  const { cpf } = req.params;
+
+  const customer = customers.find((customer) => customer.cpf === cpf);
+  if (!customer) {
+    return res.status(404).json({ message: "Customer não encontrado" });
+  }
+
+  return res.json(customer.statement);
 });
 
 app.listen(3000, () => console.log("API Running..."));
