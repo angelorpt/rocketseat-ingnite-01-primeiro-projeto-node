@@ -1,4 +1,4 @@
-@baseUrl = http://localhost:3001
+@baseUrl = http://localhost:3000
 
 
 GET {{baseUrl}}
@@ -9,7 +9,6 @@ GET {{baseUrl}}/accounts
 
 ### 
 
-### 
 
 POST {{baseUrl}}/accounts
 Content-Type: application/json
@@ -19,12 +18,15 @@ Content-Type: application/json
   "name": "Angelo Rafael"
 }
 
-
 ### 
 
 GET {{baseUrl}}/statements
 CPF: 123456789
 
+### 
+
+GET {{baseUrl}}/statements/date?date=2021-10-09
+CPF: 123456789
 
 ### 
 

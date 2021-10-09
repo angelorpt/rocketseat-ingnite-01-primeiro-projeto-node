@@ -73,6 +73,21 @@ app.get("/statements", verifyIfExistsAccountCPF, (req, res) => {
   return res.json(customer.statement);
 });
 
+app.get("/statements/date", verifyIfExistsAccountCPF, (req, res) => {
+  const { customer } = req;
+  const { date } = req.query;
+
+  const dateFormat = new Date(date + " 00:00");
+
+  const statements = customer.statement.filter(
+    (statement) =>
+      statement.created_at.toDateString() ===
+      new Date(dateFormat).toDateString()
+  );
+
+  return res.json(statements);
+});
+
 app.post("/deposit", verifyIfExistsAccountCPF, (req, res) => {
   const { description, amount } = req.body;
   const { customer } = req;
@@ -115,4 +130,5 @@ app.post("/withdraw", verifyIfExistsAccountCPF, (req, res) => {
   }
 });
 
-app.listen(3001, () => console.log("API Running..."));
+// Sobe o Servidor na Porta 3000
+app.listen(3000, () => console.log("API Running..."));
