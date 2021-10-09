@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const { v4: uuidv4 } = require("uuid");
+const CREDIT = "CREDIT";
+const DEBIT = "DEBIT";
 
 const app = express();
 
@@ -19,6 +21,18 @@ const verifyIfExistsAccountCPF = (req, res, next) => {
   }
   req.customer = customer;
   return next();
+};
+
+const getBalance = (statements) => {
+  const balance = statements.reduce((total, operation) => {
+    if (operation.type === CREDIT) {
+      return total + operation.amount;
+    } else {
+      return total - operation.amount;
+    }
+  }, 0);
+
+  return balance;
 };
 
 app.get("/", (_, res) => {
@@ -66,15 +80,38 @@ app.post("/deposit", verifyIfExistsAccountCPF, (req, res) => {
   const statementOperation = {
     description,
     amount,
-    type: "CREDIT",
+    type: CREDIT,
     created_at: new Date(),
   };
 
   try {
     customer.statement.push(statementOperation);
-    return res.status(201).json({ message: "Operação realizada com sucesso" });
+    return res.status(201).json({ message: "Crédito realizado com sucesso" });
   } catch (error) {
-    return res.status(422).json({ message: "Falha ao realizar a operação" });
+    return res.status(422).json({ message: "Falha ao realizar o crédito" });
+  }
+});
+
+app.post("/withdraw", verifyIfExistsAccountCPF, (req, res) => {
+  const { amount } = req.body;
+  const { customer } = req;
+
+  const balance = getBalance(customer.statement);
+  if (balance < amount) {
+    return res.status(400).json({ error: "Saldo insuficiente" });
+  }
+
+  const statementOperation = {
+    amount,
+    type: DEBIT,
+    created_at: new Date(),
+  };
+
+  try {
+    customer.statement.push(statementOperation);
+    return res.status(201).json({ message: "Saque realizado com sucesso" });
+  } catch (error) {
+    return res.status(422).json({ message: "Falha ao realizar o saque" });
   }
 });
 
