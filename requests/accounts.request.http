@@ -1,0 +1,15 @@
+@baseUrl = http://localhost:3000
+
+### 
+
+GET {{baseUrl}}/accounts
+
+### 
+
+POST {{baseUrl}}/accounts
+Content-Type: application/json
+
+{
+  "cpf": 123456789,
+  "name": "Angelo Rafael"
+}
