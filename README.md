@@ -16,6 +16,7 @@ Primeiro projeto baseado na trilha de Node.js da Rocketseat.
 - [x] Deve ser possível atualizar dados da conta do cliente
 - [x] Deve ser possível obter dados da conta do cliente
 - [x] Deve ser possível deletar uma conta
+- [x] Deve ser possível consulta o balance de uma conta do cliente
 
 ## Regras de Negócio
 

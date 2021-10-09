@@ -35,6 +35,7 @@ const getBalance = (statements) => {
   return balance;
 };
 
+// routes
 app.get("/", (_, res) => {
   return res.json({ hello: "world" });
 });
