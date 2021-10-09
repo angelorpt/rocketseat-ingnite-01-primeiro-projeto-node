@@ -1,6 +1,0 @@
-@baseUrl = http://localhost:3001
-
-### 
-
-GET {{baseUrl}}/statements
-CPF: 123456789

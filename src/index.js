@@ -59,4 +59,23 @@ app.get("/statements", verifyIfExistsAccountCPF, (req, res) => {
   return res.json(customer.statement);
 });
 
+app.post("/deposit", verifyIfExistsAccountCPF, (req, res) => {
+  const { description, amount } = req.body;
+  const { customer } = req;
+
+  const statementOperation = {
+    description,
+    amount,
+    type: "CREDIT",
+    created_at: new Date(),
+  };
+
+  try {
+    customer.statement.push(statementOperation);
+    return res.status(201).json({ message: "Operação realizada com sucesso" });
+  } catch (error) {
+    return res.status(422).json({ message: "Falha ao realizar a operação" });
+  }
+});
+
 app.listen(3001, () => console.log("API Running..."));
