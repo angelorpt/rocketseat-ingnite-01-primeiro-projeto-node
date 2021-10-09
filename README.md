@@ -54,3 +54,21 @@ npm start
 ```http
 http://localhost:3000
 ```
+
+## Rotas
+
+Rotas disponíveis
+
+| Verbo  | Recurso          |
+| ------ | ---------------- |
+| GET    | /                |
+| GET    | /accounts/all    |
+| GET    | /accounts        |
+| POST   | /accounts        |
+| PUT    | /accounts        |
+| DELETE | /accounts        |
+| GET    | /statements      |
+| GET    | /statements/date |
+| POST   | /deposit         |
+| POST   | /withdraw        |
+| GET    | /balance         |

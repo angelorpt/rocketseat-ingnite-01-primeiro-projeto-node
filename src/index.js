@@ -1,4 +1,5 @@
 const express = require("express");
+const expressListRoutes = require("express-list-routes");
 const cors = require("cors");
 const { v4: uuidv4 } = require("uuid");
 const CREDIT = "CREDIT";
@@ -159,6 +160,8 @@ app.get("/balance", verifyIfExistsAccountCPF, (req, res) => {
   const balance = getBalance(customer.statement);
   return res.status(200).json({ balance: balance });
 });
+
+expressListRoutes(app);
 
 // Sobe o Servidor na Porta 3000
 app.listen(3000, () => console.log("API Running..."));
